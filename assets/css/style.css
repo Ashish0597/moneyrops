@@ -825,34 +825,78 @@ body {
 /* ── RESPONSIVE ─────────────────────────────────── */
 @media (max-width: 768px) {
   .about-timeline {
-    grid-template-columns: 30px 1fr;
-    grid-template-areas:
-      "line content";
+    display: block;
+    position: relative;
+    padding-left: 50px;
   }
 
-  .abt-left {
-    grid-area: content;
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .abt-line {
-    grid-area: line;
-    grid-column: 1;
-    grid-row: 1 / 3;
-  }
-
+  .abt-left,
   .abt-right {
-    grid-column: 2;
-    grid-row: 2;
+    display: block;
   }
 
-  .abt-line-track {
-    padding-top: 0;
+  .abt-block {
+    position: relative;
+    margin-bottom: 40px;
   }
 
-  .abt-line-seg {
-    height: 120px;
+  .abt-right .abt-block:last-child {
+    margin-bottom: 0;
+  }
+
+  /* hide the old separate line column */
+  .abt-line {
+    display: none;
+  }
+
+  /* continuous vertical line on the left */
+  .about-timeline::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 17px;
+    width: 1px;
+    height: calc(100% - 36px);
+    background: linear-gradient(to bottom, rgba(201,168,76,0.5), rgba(201,168,76,0.15));
+  }
+
+  /* dot for each block, placed beside its heading */
+  .abt-block::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #0d1f35;
+    border: 1.5px solid rgba(201, 168, 76, 0.4);
+  }
+
+  .abt-block::after {
+    font-family: "remixicon";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    color: #c9a84c;
+  }
+
+  .abt-left .abt-block::after {
+    content: "\ee0e"; /* ri-building-4-line */
+  }
+
+  .abt-right .abt-block:nth-child(1)::after {
+    content: "\ec85"; /* ri-eye-line */
+  }
+
+  .abt-right .abt-block:nth-child(2)::after {
+    content: "\eef4"; /* ri-focus-3-line */
   }
 
   .vision-section {
@@ -863,15 +907,6 @@ body {
 @media (max-width: 480px) {
   .vision-text {
     font-size: 1.4rem;
-  }
-
-  .abt-dot {
-    width: 28px;
-    height: 28px;
-  }
-
-  .abt-dot i {
-    font-size: 0.75rem;
   }
 }
 /* end */
