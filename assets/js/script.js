@@ -277,6 +277,30 @@ visionTl
     ease:"power2.out"
 },"-=1.2");
 
+// About Timeline Animation
+gsap.utils.toArray('[data-gsap="abt-left"]').forEach(el => {
+  gsap.to(el, {
+    opacity: 1, x: 0, duration: 0.8, ease: "power3.out",
+    scrollTrigger: { trigger: el, start: "top 85%" }
+  });
+});
+
+gsap.utils.toArray('[data-gsap="abt-right"]').forEach((el, i) => {
+  gsap.to(el, {
+    opacity: 1, x: 0, duration: 0.8, delay: i * 0.15, ease: "power3.out",
+    scrollTrigger: { trigger: el, start: "top 85%" }
+  });
+});
+
+// Highlight animation
+gsap.utils.toArray('.highlight').forEach(el => {
+  gsap.to(el, {
+    backgroundPosition: '0% 0', opacity: 1, duration: 1.4, ease: 'power2.out',
+    scrollTrigger: { trigger: el, start: 'top 85%' }
+  });
+});
+
+
 // Financial Growth Section
 
 
