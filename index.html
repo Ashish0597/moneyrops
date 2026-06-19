@@ -494,8 +494,6 @@
     <!-- ─── MAIN STYLESHEET ─────────────────────────────────────── -->
     <link rel="stylesheet" href="/assets/css/style.css" />
 
-    <!-- GSAP CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <!-- icons -->
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
@@ -525,22 +523,22 @@
           />
           <div class="logo-text">
             <span class="brand">Moneyrops</span>
+            <span class="sub">Capital Advisors Pvt. Ltd.</span>
             <span class="sub">We Cure Your Financial Problems</span>
-            <!-- <span class="sub">Capital Advisors Pvt. Ltd.</span> -->
           </div>
         </a>
 
         <!-- Links -->
         <ul class="nav-links">
           <li><a href="/" class="active">Home</a></li>
-          <li><a href="/about">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="/services">Services</a></li>
           <li><a href="/blog">Blog</a></li>
         </ul>
 
         <!-- CTA -->
         <div class="nav-cta">
-          <a href="/contact" class="btn-contact">
+          <a href="contact.html" class="btn-contact">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -557,7 +555,11 @@
           </a>
 
           <!-- Referral Button -->
-          <a href="/referral" class="btn-referral">
+          <a
+            href="javascript:void(0)"
+            class="btn-referral"
+            onclick="openReferralModal()"
+          >
             <i class="ri-user-add-line"></i>
             Join as Referral
           </a>
@@ -574,15 +576,139 @@
       <!-- Mobile Menu -->
       <div class="mobile-menu" id="mobile-menu">
         <a href="/">Home</a>
-        <a href="/about">About</a>
+        <a href="about.html">About</a>
         <a href="/services">Services</a>
         <a href="/blog">Blog</a>
         <div class="mob-cta">
           <a href="/contact" class="btn-contact">Contact Us</a>
-          <a href="/referral" class="btn-referral">Join as Referral</a>
+          <a
+            href="javascript:void(0)"
+            class="btn-referral"
+            onclick="openReferralModal()"
+          >
+            Join as Referral
+          </a>
         </div>
       </div>
     </nav>
+    <!-- pop-up btn -->
+    <div
+      class="referral-modal-overlay"
+      id="referralModal"
+      onclick="closeReferralModal()"
+    >
+      <div class="referral-modal-box" onclick="event.stopPropagation()">
+        <button
+          type="button"
+          class="referral-close"
+          onclick="closeReferralModal()"
+        >
+          <i class="ri-close-line"></i>
+        </button>
+
+        <div class="referral-modal-header">
+          <span class="referral-tag">Partner Program</span>
+
+          <h3>Join as Referral Partner</h3>
+
+          <p>
+            Earn attractive commissions by referring clients and businesses to
+            Moneyrops.
+          </p>
+        </div>
+
+        <form id="referralForm">
+          <div class="referral-group">
+            <label>Full Name *</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div class="referral-group">
+            <label>Mobile Number *</label>
+            <input
+              type="tel"
+              name="contact"
+              placeholder="Enter mobile number"
+              required
+            />
+          </div>
+
+          <div class="referral-group">
+            <label>Email Address *</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter email address"
+              required
+            />
+          </div>
+
+          <div class="referral-group">
+            <label>Company Name</label>
+            <input
+              type="text"
+              name="company_name"
+              placeholder="Enter company name (optional)"
+            />
+          </div>
+
+          <div class="referral-group">
+            <label>City / Location *</label>
+            <input
+              type="text"
+              name="city"
+              placeholder="Enter city or location"
+              required
+            />
+          </div>
+
+          <div class="referral-group">
+            <label>Profession / Business Type *</label>
+            <input
+              type="text"
+              name="profession"
+              placeholder="CA, Builder, Consultant, Broker, Agent, DSA etc."
+              required
+            />
+          </div>
+
+          <div class="referral-group">
+            <label>How did you hear about us?</label>
+            <input
+              type="text"
+              name="source"
+              placeholder="Google, Friend, LinkedIn, Social Media etc."
+            />
+          </div>
+
+          <div class="referral-group">
+            <label>Message / Notes</label>
+            <textarea
+              name="message"
+              rows="4"
+              placeholder="Any additional information..."
+            ></textarea>
+          </div>
+
+          <input
+            type="hidden"
+            name="service"
+            value="Referral Partner Registration"
+          />
+
+          <button type="submit" class="referral-submit-btn">
+            Join as Referral Partner
+          </button>
+
+          <p id="referralStatus"></p>
+        </form>
+      </div>
+    </div>
 
     <!-- header-->
     <section class="hero-header">
@@ -799,11 +925,9 @@
       <div class="finance-services-container">
         <div class="finance-services-header">
           <div class="finance-services-label">What We Offer</div>
-
           <h2 class="finance-services-heading">
             Find the Right Financial Solution
           </h2>
-
           <p class="finance-services-subheading">
             Comprehensive financial services tailored for businesses,
             entrepreneurs, startups, and individuals.
@@ -818,7 +942,12 @@
               Informed investment recommendations aligned with your financial
               goals and risk appetite.
             </div>
-            <div class="finance-service-link">Know More</div>
+            <div
+              class="finance-service-link"
+              onclick="openApplyModal('investment-advisory')"
+            >
+              Apply Now
+            </div>
           </div>
 
           <div class="finance-service-card">
@@ -828,7 +957,12 @@
               End-to-end funding solutions for new projects, covering
               construction, machinery, infrastructure, and business expansion.
             </div>
-            <div class="finance-service-link">Know More</div>
+            <div
+              class="finance-service-link"
+              onclick="openApplyModal('project-finance')"
+            >
+              Apply Now
+            </div>
           </div>
 
           <div class="finance-service-card">
@@ -838,7 +972,12 @@
               Flexible cash credit lines to manage short-term liquidity and
               day-to-day business operations.
             </div>
-            <div class="finance-service-link">Know More</div>
+            <div
+              class="finance-service-link"
+              onclick="openApplyModal('cash-credit')"
+            >
+              Apply Now
+            </div>
           </div>
 
           <div class="finance-service-card">
@@ -848,19 +987,9 @@
               Leverage your residential, commercial, or industrial property to
               secure competitive funding solutions.
             </div>
-            <div class="finance-service-link">Know More</div>
-          </div>
-
-          <div class="finance-service-card">
-            <div class="finance-service-icon">🔁</div>
-            <div class="finance-service-title">
-              Balance Transfer & Enhancement (BT & Top Up)
+            <div class="finance-service-link" onclick="openApplyModal('lap')">
+              Apply Now
             </div>
-            <div class="finance-service-desc">
-              Reduce borrowing costs and unlock additional funding to support
-              business growth, expansion, and liquidity needs.
-            </div>
-            <div class="finance-service-link">Know More</div>
           </div>
 
           <div class="finance-service-card">
@@ -870,7 +999,12 @@
               Overdraft facilities ensuring business continuity during cash flow
               gaps and lean periods.
             </div>
-            <div class="finance-service-link">Know More</div>
+            <div
+              class="finance-service-link"
+              onclick="openApplyModal('overdraft')"
+            >
+              Apply Now
+            </div>
           </div>
 
           <div class="finance-service-card">
@@ -880,7 +1014,12 @@
               Tailored business loans from working capital to expansion with
               quick disbursal.
             </div>
-            <div class="finance-service-link">Know More</div>
+            <div
+              class="finance-service-link"
+              onclick="openApplyModal('business-loan')"
+            >
+              Apply Now
+            </div>
           </div>
 
           <div class="finance-service-card">
@@ -890,7 +1029,12 @@
               Best-in-class home loan options with competitive interest rates
               from top banks and NBFCs.
             </div>
-            <div class="finance-service-link">Know More</div>
+            <div
+              class="finance-service-link"
+              onclick="openApplyModal('home-loan')"
+            >
+              Apply Now
+            </div>
           </div>
 
           <div class="finance-service-card">
@@ -900,20 +1044,45 @@
               Collateral-free finance for professionals, salaried individuals,
               and business owners.
             </div>
-            <div class="finance-service-link">Know More</div>
-          </div>
-
-          <div class="finance-service-card">
-            <div class="finance-service-icon">🚀</div>
-            <div class="finance-service-title">Growth & Expansion Support</div>
-            <div class="finance-service-desc">
-              Helping businesses take the next step with the right funding.
+            <div
+              class="finance-service-link"
+              onclick="openApplyModal('personal-loan')"
+            >
+              Apply Now
             </div>
-            <div class="finance-service-link">Know More</div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- APPLY MODAL-->
+    <div
+      class="apply-modal-overlay"
+      id="applyModalOverlay"
+      onclick="closeApplyModal(event)"
+    >
+      <div class="apply-modal-box" onclick="event.stopPropagation()">
+        <button class="apply-modal-close" onclick="closeApplyModal()">
+          <i class="ri-close-line"></i>
+        </button>
+
+        <div class="apply-modal-header">
+          <span class="apply-modal-tag">Apply Now</span>
+          <h3 id="applyModalTitle">Service Name</h3>
+        </div>
+
+        <form id="applyForm">
+          <input type="hidden" id="serviceNameField" name="service" />
+          <div id="applyFormFields" class="apply-form-fields"></div>
+
+          <button type="submit" class="apply-submit-btn">
+            Submit Application <i class="ri-arrow-right-line"></i>
+          </button>
+
+          <p class="apply-form-status" id="applyFormStatus"></p>
+        </form>
+      </div>
+    </div>
 
     <!-- process -->
     <section class="moneyrops-process">
@@ -1246,23 +1415,23 @@
 
       <div class="mr-testimonial-stats">
         <div class="mr-stat-box">
-          <h3>2000+</h3>
-          <span>Clients Served</span>
+          <h3>₹5000Cr+</h3>
+          <span>Disbursed</span>
         </div>
 
         <div class="mr-stat-box">
-          <h3>₹250Cr+</h3>
-          <span>Funding Facilitated</span>
+          <h3>₹2000+</h3>
+          <span>Clients</span>
         </div>
 
         <div class="mr-stat-box">
-          <h3>98%</h3>
-          <span>Client Satisfaction</span>
+          <h3>15+ Yrs</h3>
+          <span>Experience</span>
         </div>
 
         <div class="mr-stat-box">
-          <h3>15+</h3>
-          <span>Banking Partners</span>
+          <h3>95%</h3>
+          <span>Approval Ratio</span>
         </div>
       </div>
 
@@ -1404,11 +1573,11 @@
         </div>
       </div>
     </section>
+
     <!-- contact-us -->
     <section class="contact-section" id="contact">
       <div class="contact-wrapper">
-        <!-- LEFT -->
-        <div class="contact-left">
+        <div class="contact-center">
           <span class="contact-tag">CONTACT US</span>
 
           <h2 class="contact-heading">
@@ -1420,63 +1589,62 @@
             Loans, Project Finance and Financial Advisory.
           </p>
 
-          <form class="contact-form">
-            <div class="contact-grid">
-              <input type="text" placeholder="Full Name" required />
-              <input type="tel" placeholder="Phone Number" required />
+          <form class="contact-form" id="contactForm">
+            <div class="contact-form-bg"></div>
 
-              <input type="email" placeholder="Email Address" />
-              <input type="text" placeholder="Company Name" />
+            <div class="contact-form-inner">
+              <div class="contact-grid">
+                <input type="text" name="name" placeholder="Name" required />
+                <input
+                  type="tel"
+                  name="contact"
+                  placeholder="Contact"
+                  required
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="E-mail"
+                  required
+                />
+                <input type="text" name="city" placeholder="City" required />
+
+                <input
+                  type="text"
+                  name="business_name"
+                  placeholder="Business Name"
+                  required
+                />
+                <input
+                  type="text"
+                  name="nature_of_business"
+                  placeholder="Nature of Business"
+                  required
+                />
+
+                <input
+                  type="text"
+                  name="business_turnover"
+                  placeholder="Business Turnover"
+                  required
+                />
+                <input
+                  type="text"
+                  name="requirement_amount"
+                  placeholder="Requirement Amount"
+                  required
+                />
+              </div>
+
+              <button type="submit" id="contactSubmitBtn">
+                Request Consultation
+                <i class="ri-arrow-right-line"></i>
+              </button>
+
+              <p class="contact-form-status" id="contactFormStatus"></p>
             </div>
-
-            <select>
-              <option>Select Service</option>
-              <option>Debt Syndication</option>
-              <option>Financial Advisory</option>
-              <option>Home Loan</option>
-              <option>Business Loan</option>
-              <option>Project Finance</option>
-            </select>
-
-            <textarea
-              rows="5"
-              placeholder="Tell us about your requirement"
-            ></textarea>
-
-            <button type="submit">
-              Request Consultation
-              <i class="ri-arrow-right-line"></i>
-            </button>
           </form>
-        </div>
-
-        <!-- RIGHT -->
-        <div class="contact-right">
-          <img
-            src="./assets/image/indiamap.png"
-            class="contact-map"
-            alt="India Map"
-          />
-
-          <div class="branch-dot chandigarh">
-            <span></span>
-            <label></label>
-          </div>
-
-          <div class="branch-dot gurugram">
-            <span></span>
-            <label></label>
-          </div>
-
-          <div class="branch-dot delhi">
-            <span></span>
-            <label></label>
-          </div>
-
-          <div class="branch-dot noida">
-            <span></span>
-            <label></label>
-          </div>
         </div>
       </div>
     </section>
@@ -1492,12 +1660,23 @@
           <p>Corporate Finance | Project Finance | Debt Advisory</p>
 
           <div class="mr-footer-contact">
-            <div><i class="ri-phone-fill"></i><span>+91 XXXXX XXXXX</span></div>
             <div>
-              <i class="ri-mail-fill"></i><span>info@moneyrops.com</span>
+              <i class="ri-phone-fill"></i>
+              <span>
+                <a href="tel:+919896353388">+91 9896353388</a>
+              </span>
             </div>
+
             <div>
-              <i class="ri-map-pin-2-fill"></i><span>Delhi NCR, India</span>
+              <i class="ri-mail-fill"></i>
+              <span>
+                <a href="mailto:moneyrops@gmail.com">moneyrops@gmail.com</a>
+              </span>
+            </div>
+
+            <div>
+              <i class="ri-map-pin-2-fill"></i>
+              <span>Delhi, India</span>
             </div>
           </div>
         </div>
@@ -1513,12 +1692,12 @@
 
         <div class="mr-footer-services">
           <h4>Services</h4>
-          <a href="#services">Project Finance</a>
-          <a href="#services">Cash Credit (CC)</a>
-          <a href="#services">Loan Against Property (LAP)</a>
-          <a href="#services">Overdraft (OD)</a>
-          <a href="#services">Business Loans (BL)</a>
-          <a href="#services">Home Loans (HL)</a>
+          <a href="#services">Project & Expansion Finance</a>
+          <a href="#services">Working Capital Solutions</a>
+          <a href="#services">Financial Advisory</a>
+          <a href="#services">Debt Syndication</a>
+          <a href="#services">Govt. Subsidy Assistance</a>
+          <a href="#services">Virtual CFO Services</a>
         </div>
 
         <div class="mr-footer-social">
@@ -1535,7 +1714,7 @@
       <div class="mr-footer-bottom">
         <p>
           Capital Solutions. Growth Partnerships. © 2026 Moneyrops Capital
-          Advisors Pvt. Ltd. All Rights Reserved.
+          Advisors. All Rights Reserved.
         </p>
       </div>
     </footer>
@@ -1562,8 +1741,14 @@
         />
       </svg>
     </a>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      emailjs.init("YOUR_PUBLIC_KEY");
+    </script>
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/form.js"></script>
   </body>
 </html>
