@@ -280,14 +280,14 @@ visionTl
 // About Timeline Animation
 gsap.utils.toArray('[data-gsap="abt-left"]').forEach(el => {
   gsap.to(el, {
-    opacity: 1, x: 0, duration: 0.8, ease: "power3.out",
+    opacity: 1, x: 0, duration: 1, ease: "power3.out",
     scrollTrigger: { trigger: el, start: "top 85%" }
   });
 });
 
 gsap.utils.toArray('[data-gsap="abt-right"]').forEach((el, i) => {
   gsap.to(el, {
-    opacity: 1, x: 0, duration: 0.8, delay: i * 0.15, ease: "power3.out",
+    opacity: 1, x: 0, duration: 1, delay: i * 0.15, ease: "power3.out",
     scrollTrigger: { trigger: el, start: "top 85%" }
   });
 });

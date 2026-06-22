@@ -9,6 +9,7 @@ const serviceConfig = {
       { label: "E-mail ID", name: "email", type: "email" }
     ]
   },
+
   "project-finance": {
     title: "Project Finance",
     fields: [
@@ -17,18 +18,33 @@ const serviceConfig = {
       { label: "City", name: "city", type: "text" },
       { label: "Business Name", name: "business_name", type: "text" },
       { label: "Industry Type", name: "industry_type", type: "text" },
-      { label: "Amount Required", name: "amount_required", type: "text" }
+      { label: "Required Amount", name: "required_amount", type: "text" }
     ]
   },
+
   "cash-credit": {
     title: "Cash Credit (CC)",
     fields: [
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
       { label: "City", name: "city", type: "text" },
-      { label: "E-mail ID", name: "email", type: "email" }
+      {
+        label: "Occupation Type",
+        name: "occupation_type",
+        type: "select",
+        options: [
+          "Salaried",
+          "Self-Employed Professional",
+          "Partnership Firm",
+          "Proprietorship Firm",
+          "LLP (Limited Liability Partnership)",
+          "Private Limited Company"
+        ]
+      },
+      { label: "Monthly Net Salary", name: "monthly_salary", type: "text" }
     ]
   },
+
   "lap": {
     title: "Loan Against Property (LAP)",
     fields: [
@@ -38,43 +54,97 @@ const serviceConfig = {
       { label: "E-mail ID", name: "email", type: "email" }
     ]
   },
+
   "business-loan": {
     title: "Business Loan (BL)",
     fields: [
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
       { label: "City", name: "city", type: "text" },
-      { label: "E-mail ID", name: "email", type: "email" }
+      {
+        label: "Occupation Type",
+        name: "occupation_type",
+        type: "select",
+        options: [
+          "Salaried",
+          "Self-Employed Professional",
+          "Partnership Firm",
+          "Proprietorship Firm",
+          "LLP (Limited Liability Partnership)",
+          "Private Limited Company"
+        ]
+      },
+      { label: "Monthly Net Salary", name: "monthly_salary", type: "text" }
     ]
   },
+
   "home-loan": {
     title: "Home Loan (HL)",
     fields: [
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
       { label: "City", name: "city", type: "text" },
-      { label: "Occupation Type", name: "occupation_type", type: "text" },
+      {
+        label: "Occupation Type",
+        name: "occupation_type",
+        type: "select",
+        options: [
+          "Salaried",
+          "Self-Employed Professional",
+          "Partnership Firm",
+          "Proprietorship Firm",
+          "LLP (Limited Liability Partnership)",
+          "Private Limited Company"
+        ]
+      },
       { label: "Monthly Net Salary", name: "monthly_salary", type: "text" },
-      { label: "Amount Required", name: "amount_required", type: "text" }
+      { label: "Required Amount", name: "required_amount", type: "text" }
     ]
   },
+
   "personal-loan": {
     title: "Personal Loan (PL)",
     fields: [
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
       { label: "City", name: "city", type: "text" },
-      { label: "Occupation Type", name: "occupation_type", type: "text" },
+      {
+        label: "Occupation Type",
+        name: "occupation_type",
+        type: "select",
+        options: [
+          "Salaried",
+          "Self-Employed Professional",
+          "Partnership Firm",
+          "Proprietorship Firm",
+          "LLP (Limited Liability Partnership)",
+          "Private Limited Company"
+        ]
+      },
       { label: "Monthly Net Salary", name: "monthly_salary", type: "text" }
     ]
   },
+
   "overdraft": {
     title: "Overdraft (OD)",
     fields: [
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
       { label: "City", name: "city", type: "text" },
-      { label: "E-mail ID", name: "email", type: "email" }
+      {
+        label: "Occupation Type",
+        name: "occupation_type",
+        type: "select",
+        options: [
+          "Salaried",
+          "Self-Employed Professional",
+          "Partnership Firm",
+          "Proprietorship Firm",
+          "LLP (Limited Liability Partnership)",
+          "Private Limited Company"
+        ]
+      },
+      { label: "Monthly Net Salary", name: "monthly_salary", type: "text" }
     ]
   }
 };
@@ -90,20 +160,33 @@ function openApplyModal(serviceKey) {
   const fieldsContainer = document.getElementById("applyFormFields");
   fieldsContainer.innerHTML = "";
 
-  service.fields.forEach((field) => {
-    const group = document.createElement("div");
-    group.className = "apply-form-group";
+service.fields.forEach((field) => {
+  const group = document.createElement("div");
+  group.className = "apply-form-group";
+
+  if (field.type === "select") {
     group.innerHTML = `
-  <label>${field.label}</label>
-  <input
-    type="${field.type}"
-    name="${field.name}"
-    placeholder="Enter ${field.label}"
-    required
-  />
-`;
-    fieldsContainer.appendChild(group);
-  });
+      <label>${field.label}</label>
+      <select name="${field.name}" required>
+        <option value="">Select ${field.label}</option>
+        ${field.options
+          .map(option => `<option value="${option}">${option}</option>`)
+          .join("")}
+      </select>
+    `;
+  } else {
+    group.innerHTML = `
+      <label>${field.label}</label>
+      <input
+        type="${field.type}"
+        name="${field.name}"
+        required
+      />
+    `;
+  }
+
+  fieldsContainer.appendChild(group);
+});
 
   document.getElementById("applyModalOverlay").classList.add("active");
   document.body.style.overflow = "hidden";

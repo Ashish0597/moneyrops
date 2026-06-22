@@ -3112,3 +3112,21 @@ input[type="range"]::-moz-range-thumb {
     display: none;
   }
 }
+
+
+/* form */
+.apply-form-group select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  outline: none;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: .3s;
+}
+
+.apply-form-group select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(201,168,76,.1);
+}
