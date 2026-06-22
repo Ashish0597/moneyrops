@@ -28,20 +28,9 @@ const serviceConfig = {
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
       { label: "City", name: "city", type: "text" },
-      {
-        label: "Occupation Type",
-        name: "occupation_type",
-        type: "select",
-        options: [
-          "Salaried",
-          "Self-Employed Professional",
-          "Partnership Firm",
-          "Proprietorship Firm",
-          "LLP (Limited Liability Partnership)",
-          "Private Limited Company"
-        ]
-      },
-      { label: "Monthly Net Salary", name: "monthly_salary", type: "text" }
+      { label: "Business Name", name: "business_name", type: "text" },
+      { label: "Industry Type", name: "industry_type", type: "text" },
+      { label: "Required Amount", name: "required_amount", type: "text" }
     ]
   },
 
@@ -51,7 +40,9 @@ const serviceConfig = {
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
       { label: "City", name: "city", type: "text" },
-      { label: "E-mail ID", name: "email", type: "email" }
+      { label: "Business Name", name: "business_name", type: "text" },
+      { label: "Industry Type", name: "industry_type", type: "text" },
+      { label: "Required Amount", name: "required_amount", type: "text" }
     ]
   },
 
@@ -61,20 +52,9 @@ const serviceConfig = {
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
       { label: "City", name: "city", type: "text" },
-      {
-        label: "Occupation Type",
-        name: "occupation_type",
-        type: "select",
-        options: [
-          "Salaried",
-          "Self-Employed Professional",
-          "Partnership Firm",
-          "Proprietorship Firm",
-          "LLP (Limited Liability Partnership)",
-          "Private Limited Company"
-        ]
-      },
-      { label: "Monthly Net Salary", name: "monthly_salary", type: "text" }
+      { label: "Business Name", name: "business_name", type: "text" },
+      { label: "Industry Type", name: "industry_type", type: "text" },
+      { label: "Required Amount", name: "required_amount", type: "text" }
     ]
   },
 
@@ -97,7 +77,7 @@ const serviceConfig = {
           "Private Limited Company"
         ]
       },
-      { label: "Monthly Net Salary", name: "monthly_salary", type: "text" },
+      { label: "Annual Income", name: "annual_income", type: "text" },
       { label: "Required Amount", name: "required_amount", type: "text" }
     ]
   },
@@ -121,7 +101,8 @@ const serviceConfig = {
           "Private Limited Company"
         ]
       },
-      { label: "Monthly Net Salary", name: "monthly_salary", type: "text" }
+      { label: "Annual Income", name: "annual_income", type: "text" },
+      { label: "Required Amount", name: "required_amount", type: "text" }
     ]
   },
 
@@ -131,20 +112,9 @@ const serviceConfig = {
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
       { label: "City", name: "city", type: "text" },
-      {
-        label: "Occupation Type",
-        name: "occupation_type",
-        type: "select",
-        options: [
-          "Salaried",
-          "Self-Employed Professional",
-          "Partnership Firm",
-          "Proprietorship Firm",
-          "LLP (Limited Liability Partnership)",
-          "Private Limited Company"
-        ]
-      },
-      { label: "Monthly Net Salary", name: "monthly_salary", type: "text" }
+      { label: "Business Name", name: "business_name", type: "text" },
+      { label: "Industry Type", name: "industry_type", type: "text" },
+      { label: "Required Amount", name: "required_amount", type: "text" }
     ]
   }
 };

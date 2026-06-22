@@ -84,6 +84,7 @@ __ */
   overflow: hidden;
   aspect-ratio: 4 / 5;
   background: #e9ebee;
+  max-width: 450px;
 }
 
 .founder-photo {
