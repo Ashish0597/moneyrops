@@ -460,3 +460,81 @@ gsap.timeline({
     item.classList.toggle("active");
   });
 });
+
+
+
+// patners
+
+
+let counterObj = { val: 0 };
+gsap.to(counterObj, {
+  val: 100,
+  duration: 1.8,
+  ease: 'power2.out',
+  scrollTrigger: { trigger: '.bp-intro', start: 'top 80%', once: true },
+  onUpdate: () => {
+    const n = Math.round(counterObj.val);
+    document.querySelector('.bp-count-num').textContent = String(n).padStart(2, '0');
+  }
+});
+ 
+
+function makeLogoBadge(tag){
+  const initials = tag.slice(0, 4);
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#e7c766"/>
+          <stop offset="1" stop-color="#c9a227"/>
+        </linearGradient>
+      </defs>
+      <rect x="1" y="1" width="62" height="62" rx="14" fill="#0f1b30" stroke="url(#g)" stroke-width="1.5"/>
+      <text x="32" y="38" font-family="Space Mono, monospace" font-size="15" font-weight="700"
+            fill="#f3efe4" text-anchor="middle">${initials}</text>
+    </svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+ 
+document.querySelectorAll('.bp-card').forEach(card => {
+  const img = card.querySelector('.bp-card-logo');
+  if (img) img.src = makeLogoBadge(card.dataset.tag || '?');
+});
+ 
+/* one-time reveal of the grid on scroll */
+const cards = gsap.utils.toArray('.bp-card');
+gsap.set(cards, { autoAlpha: 0, y: 22 });
+gsap.to(cards, {
+  autoAlpha: 1,
+  y: 0,
+  duration: 0.6,
+  ease: 'power2.out',
+  stagger: 0.03,
+  scrollTrigger: { trigger: '.bp-partner-grid', start: 'top 85%', once: true }
+});
+ 
+/* ambient background drift */
+gsap.to('.bp-arcs svg', {
+  y: -20,
+  duration: 8,
+  ease: 'sine.inOut',
+  yoyo: true,
+  repeat: -1
+});
+ 
+
+function runAmbientGlow(){
+  const card = cards[Math.floor(Math.random() * cards.length)];
+  card.classList.add('bp-glow');
+ 
+  const holdTime = gsap.utils.random(1.2, 2.4);
+  gsap.delayedCall(holdTime, () => card.classList.remove('bp-glow'));
+ 
+  const nextPause = gsap.utils.random(0.3, 1.2);
+  gsap.delayedCall(nextPause, runAmbientGlow);
+}
+ 
+/* stagger the start of a few runners so glows overlap naturally */
+runAmbientGlow();
+gsap.delayedCall(0.4, runAmbientGlow);
+gsap.delayedCall(0.9, runAmbientGlow);

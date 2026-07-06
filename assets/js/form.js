@@ -170,8 +170,12 @@ function closeApplyModal(e) {
   document.getElementById("applyFormStatus").className = "apply-form-status";
 }
 
-// ── FORM SUBMIT (EmailJS integration placeholder) ────
-document.getElementById("applyForm").addEventListener("submit", function (e) {
+
+// ── FORM SUBMIT ──────────────────────────────────────
+const applyForm = document.getElementById("applyForm");
+
+if (applyForm) {
+applyForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const submitBtn = e.target.querySelector(".apply-submit-btn");
@@ -182,46 +186,59 @@ document.getElementById("applyForm").addEventListener("submit", function (e) {
 
   const formData = new FormData(e.target);
   const templateParams = {};
-  if (
-  templateParams.contact &&
-  !/^\d{10}$/.test(templateParams.contact)
-) {
-  statusEl.textContent =
-    "Please enter a valid 10 digit mobile number.";
-  statusEl.className = "apply-form-status error";
 
-  submitBtn.disabled = false;
-  submitBtn.innerHTML =
-    'Submit Application <i class="ri-arrow-right-line"></i>';
-
-  return;
-}
   formData.forEach((value, key) => {
     templateParams[key] = value;
-  });
+  }); 
 
-  // EmailJS call (Service ID, Template ID, Public Key baad mein daalenge)
-  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams, "YOUR_PUBLIC_KEY")
+  if (
+    templateParams.contact &&
+    !/^\d{10}$/.test(templateParams.contact)
+  ) {
+    statusEl.textContent =
+      "Please enter a valid 10 digit mobile number.";
+    statusEl.className = "apply-form-status error";
+
+    submitBtn.disabled = false;
+    submitBtn.innerHTML =
+      'Submit Application <i class="ri-arrow-right-line"></i>';
+
+    return;
+  }
+
+  emailjs
+    .send(
+      "service_5y6tya9",
+      "template_n5sb98g",
+      templateParams,
+      "lJBPZEThLQpI2FlU9"
+    )
     .then(() => {
       statusEl.textContent = "Application submitted successfully!";
       statusEl.className = "apply-form-status success";
       e.target.reset();
-      setTimeout(() => closeApplyModal(), 2000);
+
+      setTimeout(() => {
+        closeApplyModal();
+      }, 2000);
     })
-    .catch(() => {
+    .catch((error) => {
+      console.error(error);
       statusEl.textContent = "Something went wrong. Please try again.";
       statusEl.className = "apply-form-status error";
     })
     .finally(() => {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = `Submit Application <i class="ri-arrow-right-line"></i>`;
+      submitBtn.innerHTML =
+        'Submit Application <i class="ri-arrow-right-line"></i>';
     });
-    document.addEventListener("keydown", function (e) {
+});}
+
+document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     closeApplyModal();
   }
-});
-});
+})
 
 // >>>>>>>>>>>>>>>>>>>>>> nav btn
 function openReferralModal() {
@@ -249,10 +266,10 @@ if (referralForm) {
 
     emailjs
       .send(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
+        "service_5y6tya9",
+        "template_95kbk9p",
         templateParams,
-        "YOUR_PUBLIC_KEY"
+        "lJBPZEThLQpI2FlU9"
       )
       .then(() => {
         document.getElementById("referralStatus").innerHTML =
@@ -271,8 +288,84 @@ if (referralForm) {
           "Something went wrong.";
       });
   });
+};
+
+
+// ── SERVICE PAGE APPLICATION FORM ─────────────────────
+
+const serviceApplyForm = document.getElementById("serviceApplyForm");
+
+if (serviceApplyForm) {
+  serviceApplyForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const statusEl = this.querySelector(".apply-form-status");
+
+    // Get all form data
+    const formData = new FormData(this);
+    const templateParams = {};
+
+    formData.forEach((value, key) => {
+      templateParams[key] = value;
+    });
+
+    // Add service name
+    templateParams.service = "Project & Expansion Finance";
+
+    // Mobile number validation
+    if (
+      templateParams.contact &&
+      !/^\d{10}$/.test(templateParams.contact)
+    ) {
+      statusEl.textContent =
+        "Please enter a valid 10 digit mobile number.";
+
+      statusEl.className = "apply-form-status error";
+
+      return;
+    }
+
+    // Button loading
+    submitBtn.disabled = true;
+
+    submitBtn.innerHTML =
+      'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+
+    // Send Email
+    emailjs
+      .send(
+        "service_5y6tya9",
+        "template_n5sb98g",
+        templateParams,
+        "lJBPZEThLQpI2FlU9"
+      )
+
+      .then(() => {
+        statusEl.textContent =
+          "Application submitted successfully! Our team will contact you soon.";
+
+        statusEl.className =
+          "apply-form-status success";
+
+        this.reset();
+      })
+
+      .catch((error) => {
+        console.error("EmailJS Error:", error);
+
+        statusEl.textContent =
+          "Something went wrong. Please try again.";
+
+        statusEl.className =
+          "apply-form-status error";
+      })
+
+      .finally(() => {
+        submitBtn.disabled = false;
+
+        submitBtn.innerHTML =
+          'Submit Application <i class="fa-solid fa-arrow-right"></i>';
+      });
+  });
 }
-
-
-// contact page
-
