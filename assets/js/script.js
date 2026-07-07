@@ -32,49 +32,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ── 2.  Hero content fade in ── */
+// Hero Animation (Run only if hero exists)
+if (document.querySelector(".hero-heading")) {
 
   // Set initial states
   gsap.set(".hero-badge",   { autoAlpha: 0, y: 20 });
   gsap.set(".hero-heading", { autoAlpha: 0, y: 30 });
   gsap.set(".hero-subtext", { autoAlpha: 0, y: 20 });
-  gsap.set(".hero-btns",    { autoAlpha: 0, y: 20 });
+  // gsap.set(".hero-btns",    { autoAlpha: 0, y: 20 });
   gsap.set(".hero-stats",   { autoAlpha: 0, y: 20 });
   gsap.set(".hero-card",    { autoAlpha: 0, x: 40 });
-  gsap.set(".hero-bottom",  { autoAlpha: 0 });
+  // gsap.set(".hero-bottom",  { autoAlpha: 0 });
 
   // Animate hero left side — staggered
   const heroTl = gsap.timeline({ delay: 0.6 });
 
   heroTl
     .to(".hero-badge", {
-      autoAlpha: 1, y: 0,
-      duration: 0.5, ease: "power2.out"
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.5,
+      ease: "power2.out"
     })
     .to(".hero-heading", {
-      autoAlpha: 1, y: 0,
-      duration: 0.6, ease: "power3.out"
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "power3.out"
     }, "-=0.2")
     .to(".hero-subtext", {
-      autoAlpha: 1, y: 0,
-      duration: 0.5, ease: "power2.out"
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.5,
+      ease: "power2.out"
     }, "-=0.3")
-    .to(".hero-btns", {
-      autoAlpha: 1, y: 0,
-      duration: 0.5, ease: "power2.out"
-    }, "-=0.2")
+    // .to(".hero-btns", {
+    //   autoAlpha: 1,
+    //   y: 0,
+    //   duration: 0.5,
+    //   ease: "power2.out"
+    // }, "-=0.2")
     .to(".hero-stats", {
-      autoAlpha: 1, y: 0,
-      duration: 0.5, ease: "power2.out"
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.5,
+      ease: "power2.out"
     }, "-=0.2")
     .to(".hero-card", {
-      autoAlpha: 1, x: 0,
-      duration: 0.7, ease: "power3.out"
-    }, "-=0.6")
-    .to(".hero-bottom", {
       autoAlpha: 1,
-      duration: 0.5
-    }, "-=0.2");
+      x: 0,
+      duration: 0.7,
+      ease: "power3.out"
+    }, "-=0.6")
+    // .to(".hero-bottom", {
+    //   autoAlpha: 1,
+    //   duration: 0.5
+    // }, "-=0.2");
 
+}
 
   /* ── 3. Stats Counter Animation ── */
 
@@ -177,47 +192,50 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // header>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// Hero animation (Home page only)
+if (document.querySelector(".hero-left")) {
 
-const tl = gsap.timeline();
+  const tl = gsap.timeline();
 
-tl.from(".hero-badge",{
-    y:50,
-    opacity:0,
-    duration:1
-})
+  tl.from(".hero-badge", {
+      y: 50,
+      opacity: 0,
+      duration: 1
+  })
 
-.from(".hero-left h1",{
-    y:80,
-    opacity:0,
-    duration:1
-},"-=.5")
+  .from(".hero-left h1", {
+      y: 80,
+      opacity: 0,
+      duration: 1
+  }, "-=.5")
 
-.from(".hero-left p",{
-    y:40,
-    opacity:0,
-    duration:.8
-},"-=.5")
+  .from(".hero-left p", {
+      y: 40,
+      opacity: 0,
+      duration: .8
+  }, "-=.5")
 
-.from(".hero-btn",{
-    y:30,
-    opacity:0,
-    stagger:.15,
-    duration:.6
-},"-=.4")
+  .from(".hero-btn", {
+      y: 30,
+      opacity: 0,
+      stagger: .15,
+      duration: .6
+  }, "-=.4")
 
-.from(".hero-glass-card",{
-    x:120,
-    opacity:0,
-    duration:1
-},"-=.8")
+  .from(".hero-glass-card", {
+      x: 120,
+      opacity: 0,
+      duration: 1
+  }, "-=.8")
 
-.from(".service-card",{
-    y:80,
-    opacity:0,
-    stagger:.15,
-    duration:.8
-},"-=.4");
+  .from(".service-card", {
+      y: 80,
+      opacity: 0,
+      stagger: .15,
+      duration: .8
+  }, "-=.4");
 
+}
 
 const card = document.querySelector(".hero-glass-card");
 

@@ -1,114 +1,54 @@
 // Register GSAP
-
 gsap.registerPlugin(ScrollTrigger);
 
-// Hero
+// ======================
+// Founder
+// ======================
 
-gsap.from(".about-tag", {
-  y: 40,
-  opacity: 0,
-  duration: 0.8,
-  ease: "power3.out",
-});
-
-gsap.from(".about-hero h1", {
-  y: 80,
-  opacity: 0,
-  duration: 1,
-  delay: 0.2,
-  ease: "power3.out",
-});
-
-gsap.from(".about-hero p", {
-  y: 50,
-  opacity: 0,
-  duration: 1,
-  delay: 0.4,
-  ease: "power3.out",
-});
-
-gsap.from(".about-breadcrumb", {
-  y: 30,
-  opacity: 0,
-  duration: 1,
-  delay: 0.6,
-});
-
-// Intro
-
-gsap.from(".about-intro .section-tag", {
+gsap.from(".founder-media", {
   scrollTrigger: {
-    trigger: ".about-intro",
-    start: "top 80%",
-  },
-  y: 40,
-  opacity: 0,
-  duration: 0.8,
-});
-
-gsap.from(".about-intro h2", {
-  scrollTrigger: {
-    trigger: ".about-intro",
-    start: "top 80%",
-  },
-  y: 60,
-  opacity: 0,
-  duration: 1,
-});
-
-gsap.from(".about-intro p", {
-  scrollTrigger: {
-    trigger: ".about-intro",
-    start: "top 80%",
-  },
-  y: 40,
-  opacity: 0,
-  duration: 1,
-  delay: 0.2,
-});
-
-// Founder Section
-
-gsap.from(".founder-image-wrap", {
-  scrollTrigger: {
-    trigger: ".founder-section",
+    trigger: ".exhibit-founder",
     start: "top 75%",
   },
-  x: -120,
+  x: -100,
   opacity: 0,
-  duration: 1.2,
+  duration: 1,
   ease: "power3.out",
 });
 
 gsap.from(".founder-content", {
   scrollTrigger: {
-    trigger: ".founder-section",
+    trigger: ".exhibit-founder",
     start: "top 75%",
   },
-  x: 120,
+  x: 100,
   opacity: 0,
-  duration: 1.2,
+  duration: 1,
   ease: "power3.out",
 });
 
-// Founder Stats
+// ======================
+// Why Choose Us
+// ======================
 
-gsap.from(".stat-box", {
+gsap.from(".advantage-card", {
   scrollTrigger: {
-    trigger: ".founder-stats",
-    start: "top 85%",
+    trigger: ".advantage-grid",
+    start: "top 80%",
   },
-  y: 50,
+  y: 60,
   opacity: 0,
   stagger: 0.15,
   duration: 0.8,
 });
 
-// Vision Mission
+// ======================
+// Vision / Mission
+// ======================
 
-gsap.from(".vm-card", {
+gsap.from(".direction-block", {
   scrollTrigger: {
-    trigger: ".vision-mission",
+    trigger: ".exhibit-direction",
     start: "top 80%",
   },
   y: 80,
@@ -117,51 +57,9 @@ gsap.from(".vm-card", {
   duration: 1,
 });
 
-// Why Choose Us
-
-gsap.from(".why-card", {
-  scrollTrigger: {
-    trigger: ".why-grid",
-    start: "top 80%",
-  },
-  y: 70,
-  opacity: 0,
-  stagger: 0.15,
-  duration: 0.8,
-});
-
-// Counters
-
-const counters = document.querySelectorAll(".counter");
-
-counters.forEach((counter) => {
-  ScrollTrigger.create({
-    trigger: counter,
-    start: "top 85%",
-    once: true,
-
-    onEnter: () => {
-      let target = +counter.dataset.count;
-
-      gsap.to(counter, {
-        innerText: target,
-        duration: 2,
-        snap: {
-          innerText: 1,
-        },
-
-        onUpdate: function () {
-          counter.innerText = Math.ceil(
-            counter.innerText
-          );
-        },
-      });
-    },
-  });
-});
-
-// Team Cards
-
+// ======================
+// Team
+// ======================
 
 gsap.from(".team-card", {
   scrollTrigger: {
@@ -173,40 +71,6 @@ gsap.from(".team-card", {
   opacity: 0,
   stagger: 0.2,
   duration: 1,
-});
-
-// CTA
-
-gsap.from(".about-cta h2", {
-  scrollTrigger: {
-    trigger: ".about-cta",
-    start: "top 80%",
-  },
-  y: 60,
-  opacity: 0,
-  duration: 1,
-});
-
-gsap.from(".about-cta p", {
-  scrollTrigger: {
-    trigger: ".about-cta",
-    start: "top 80%",
-  },
-  y: 40,
-  opacity: 0,
-  duration: 1,
-  delay: 0.2,
-});
-
-gsap.from(".cta-buttons", {
-  scrollTrigger: {
-    trigger: ".about-cta",
-    start: "top 80%",
-  },
-  y: 40,
-  opacity: 0,
-  duration: 1,
-  delay: 0.4,
 });
 
 

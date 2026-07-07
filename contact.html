@@ -495,7 +495,6 @@
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/contact.css" />
 
-    
     <!-- icons -->
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
@@ -787,8 +786,10 @@
 
               <div>
                 <h4>Location</h4>
-                <span>4th floor, A24, pushpanjali enclave( near gate no.1)
-Pitampura, New Delhi, India</span>
+                <span
+                  >4th floor, A24, pushpanjali enclave( near gate no.1)
+                  Pitampura, New Delhi, India</span
+                >
               </div>
             </div>
 
@@ -846,6 +847,20 @@ Pitampura, New Delhi, India</span>
           </div>
 
           <form id="contactLeadForm">
+            <input
+              type="hidden"
+              name="access_key"
+              value="c304e6d5-3e7a-4502-9086-a40cb501ae1f"
+            />
+
+            <input
+              type="hidden"
+              name="subject"
+              value="New Contact Form Enquiry | Moneyrops"
+            />
+
+            <input type="hidden" name="from_name" value="Moneyrops Website" />
+
             <div class="form-grid">
               <div class="form-group">
                 <label>Name *</label>
@@ -945,7 +960,7 @@ Pitampura, New Delhi, India</span>
               <i class="ri-arrow-right-line"></i>
             </button>
 
-            <p id="contactFormStatus"></p>
+            <p id="contactFormStatus"  class="contact-form-status"></p>
           </form>
         </div>
       </div>
@@ -976,7 +991,7 @@ Pitampura, New Delhi, India</span>
     </section>
 
     <!-- footer -->
-     <footer class="mr-footer">
+    <footer class="mr-footer">
       <div class="mr-footer-overlay"></div>
 
       <div class="mr-footer-container">

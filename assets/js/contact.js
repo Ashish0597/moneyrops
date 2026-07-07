@@ -103,3 +103,49 @@ gsap.from(".map-wrapper", {
   opacity: 0,
   duration: 1,
 });
+
+
+
+
+const contactForm = document.getElementById("contactLeadForm");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const submitBtn = this.querySelector(".contact-submit-btn");
+    const status = document.getElementById("contactFormStatus");
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "Sending...";
+
+    const formData = new FormData(this);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        status.innerHTML =
+          "✅ Thank you! Your enquiry has been submitted successfully.";
+        status.style.color = "green";
+        this.reset();
+      } else {
+        status.innerHTML = "❌ Something went wrong. Please try again.";
+        status.style.color = "red";
+      }
+    } catch (error) {
+      status.innerHTML = "❌ Network error. Please try again.";
+      status.style.color = "red";
+      console.error(error);
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.innerHTML =
+      'Request Consultation <i class="ri-arrow-right-line"></i>';
+  });
+}
