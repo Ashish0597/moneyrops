@@ -35,7 +35,7 @@
 
 .exhibit-label {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.9rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.55);
@@ -834,4 +834,245 @@ __ */
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* 
+   DIRECTOR SECTION
+ */
+
+.director-section{
+    background:#f8f7f4;
+    padding:100px 0;
+    position:relative;
+    overflow:hidden;
+}
+
+.director-container{
+    width:min(1280px,92%);
+    margin:auto;
+}
+
+.director-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:70px;
+}
+
+.director-number{
+    font-family:"Cormorant Garamond",serif;
+    font-size:1.2rem;
+    color:var(--gold);
+    font-weight:700;
+}
+
+.director-line{
+    width:70px;
+    height:1px;
+    background:var(--gold);
+}
+
+.director-label{
+    font-size:.8rem;
+    letter-spacing:5px;
+    color:#8c8c8c;
+    text-transform:uppercase;
+}
+
+.director-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:90px;
+    align-items:center;
+}
+
+.director-tag{
+    display:inline-flex;
+    align-items:center;
+    padding:10px 22px;
+    border:1px solid rgba(201,165,76,.4);
+    border-radius:999px;
+    color:var(--gold);
+    font-size:.7rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:22px;
+    font-weight:600;
+}
+
+.director-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(2.6rem,3vw,4.4rem);
+    line-height:1.08;
+    color:#11243d;
+    margin-bottom:20px;
+    font-weight:600;
+}
+
+.director-name{
+    font-family:"Cormorant Garamond",serif;
+    font-size:2rem;
+    color:var(--gold);
+    font-style:italic;
+    margin-bottom:28px;
+}
+
+.director-name span{
+    display:block;
+    margin-top:8px;
+    font-size:1rem;
+    color:#5d6777;
+    font-style:normal;
+    font-family:"Inter",sans-serif;
+    font-weight:500;
+}
+
+.director-content p{
+    color:#5b6472;
+    line-height:1.9;
+    margin-bottom:20px;
+    font-size:1rem;
+}
+
+.director-pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:35px;
+}
+
+.director-pills span{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#fff;
+    border:1px solid #e6d7b3;
+    padding:12px 18px;
+    border-radius:50px;
+    font-weight:600;
+    color:#13263e;
+    transition:.35s;
+}
+
+.director-pills span i{
+    color:var(--gold);
+}
+
+.director-pills span:hover{
+    background:var(--gold);
+    color:#fff;
+    transform:translateY(-4px);
+}
+
+.director-pills span:hover i{
+    color:#fff;
+}
+
+.director-image{
+    position:relative;
+    display:flex;
+    justify-content:center;
+}
+
+.director-image-frame{
+    width:100%;
+    max-width:400px;
+      height:500px;
+    overflow:hidden;
+    background:#fff;
+    padding:10px;
+    border-radius:28px;
+    box-shadow:
+        0 30px 70px rgba(16,36,61,.10),
+        0 8px 25px rgba(0,0,0,.06);
+    position:relative;
+}
+
+.director-image-frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:28px;
+    border:1px solid rgba(201,165,76,.25);
+    pointer-events:none;
+}
+
+
+.director-image img{
+    width:100%;
+    height:auto;         
+    display:block;
+    border-radius:20px;
+}
+
+.director-section::before{
+    content:"";
+    position:absolute;
+    right:-140px;
+    top:-140px;
+    width:380px;
+    height:380px;
+    background:rgba(201,165,76,.07);
+    border-radius:50%;
+}
+
+.director-section::after{
+    content:"";
+    position:absolute;
+    left:-120px;
+    bottom:-120px;
+    width:320px;
+    height:320px;
+    background:rgba(17,36,61,.04);
+    border-radius:50%;
+}
+
+@media(max-width:991px){
+
+.director-section{
+    padding:90px 0;
+}
+
+.director-grid{
+    grid-template-columns:1fr;
+    gap:60px;
+}
+
+.director-image{
+    order:-1;
+}
+
+.director-title{
+    font-size:2.6rem;
+}
+
+.director-name{
+    font-size:1.6rem;
+}
+
+.director-eyebrow{
+    margin-bottom:50px;
+}
+
+}
+
+@media(max-width:600px){
+
+.director-title{
+    font-size:2.1rem;
+}
+
+.director-pills{
+    gap:10px;
+}
+
+.director-pills span{
+    width:100%;
+    justify-content:center;
+}
+
+.director-image-frame{
+    padding:12px;
+}
+
 }
