@@ -105,8 +105,6 @@ gsap.from(".map-wrapper", {
 });
 
 
-
-
 const contactForm = document.getElementById("contactLeadForm");
 
 if (contactForm) {
@@ -115,37 +113,29 @@ if (contactForm) {
 
     const submitBtn = this.querySelector(".contact-submit-btn");
     const status = document.getElementById("contactFormStatus");
+    const originalBtnText = submitBtn.innerHTML;
 
     submitBtn.disabled = true;
     submitBtn.innerHTML = "Sending...";
 
-    const formData = new FormData(this);
-
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
+      await emailjs.sendForm(
+        "service_5y6tya9",
+        "template_n5sb98g",
+        this
+      );
 
-      const result = await response.json();
-
-      if (result.success) {
-        status.innerHTML =
-          "✅ Thank you! Your enquiry has been submitted successfully.";
-        status.style.color = "green";
-        this.reset();
-      } else {
-        status.innerHTML = "❌ Something went wrong. Please try again.";
-        status.style.color = "red";
-      }
+      status.innerHTML =
+        "✅ Thank you! Your enquiry has been submitted successfully.";
+      status.style.color = "green";
+      this.reset();
     } catch (error) {
-      status.innerHTML = "❌ Network error. Please try again.";
+      status.innerHTML = "❌ Something went wrong. Please try again.";
       status.style.color = "red";
       console.error(error);
     }
 
     submitBtn.disabled = false;
-    submitBtn.innerHTML =
-      'Request Consultation <i class="ri-arrow-right-line"></i>';
+    submitBtn.innerHTML = originalBtnText;
   });
 }

@@ -39,10 +39,9 @@ if (document.querySelector(".hero-heading")) {
   gsap.set(".hero-badge",   { autoAlpha: 0, y: 20 });
   gsap.set(".hero-heading", { autoAlpha: 0, y: 30 });
   gsap.set(".hero-subtext", { autoAlpha: 0, y: 20 });
-  // gsap.set(".hero-btns",    { autoAlpha: 0, y: 20 });
+  
   gsap.set(".hero-stats",   { autoAlpha: 0, y: 20 });
   gsap.set(".hero-card",    { autoAlpha: 0, x: 40 });
-  // gsap.set(".hero-bottom",  { autoAlpha: 0 });
 
   // Animate hero left side — staggered
   const heroTl = gsap.timeline({ delay: 0.6 });
@@ -66,12 +65,7 @@ if (document.querySelector(".hero-heading")) {
       duration: 0.5,
       ease: "power2.out"
     }, "-=0.3")
-    // .to(".hero-btns", {
-    //   autoAlpha: 1,
-    //   y: 0,
-    //   duration: 0.5,
-    //   ease: "power2.out"
-    // }, "-=0.2")
+   
     .to(".hero-stats", {
       autoAlpha: 1,
       y: 0,
@@ -215,12 +209,12 @@ if (document.querySelector(".hero-left")) {
       duration: .8
   }, "-=.5")
 
-  .from(".hero-btn", {
-      y: 30,
-      opacity: 0,
-      stagger: .15,
-      duration: .6
-  }, "-=.4")
+  // .from(".hero-btn", {
+  //     y: 30,
+  //     opacity: 0,
+  //     stagger: .15,
+  //     duration: .6
+  // }, "-=.4")
 
   .from(".hero-glass-card", {
       x: 120,

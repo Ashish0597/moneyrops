@@ -154,7 +154,7 @@ __ */
   display: inline-flex;
   align-items: center;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.9rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
@@ -893,7 +893,7 @@ __ */
     border:1px solid rgba(201,165,76,.4);
     border-radius:999px;
     color:var(--gold);
-    font-size:.7rem;
+    font-size:0.9rem;
     letter-spacing:2px;
     text-transform:uppercase;
     margin-bottom:22px;

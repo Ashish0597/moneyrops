@@ -121,6 +121,7 @@ body {
   text-transform: uppercase;
 }
 
+
 .logo-text .sub {
   font-size: 0.58rem;
   font-weight: 400;
@@ -1119,7 +1120,7 @@ body {
   border-radius: 50px;
   background: rgba(201, 167, 62, 0.12);
   color: #c9a73e;
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: 1px;
 }
@@ -1221,7 +1222,6 @@ body {
     font-size: 2rem;
   }
 }
-
 /* ===================================
    FINANCE SERVICES SECTION
 =================================== */
@@ -1246,7 +1246,7 @@ body {
 .finance-services-label {
   display: inline-block;
   color: #2563eb;
-  font-size: 0.85rem;
+  font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -1267,10 +1267,10 @@ body {
   color: #64748b;
 }
 
-/* GRID — 4 columns now */
+/* GRID — 3 columns → 3x3 layout for 9 cards */
 .finance-services-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -1627,7 +1627,7 @@ body {
   color: var(--gold);
   font-weight: 700;
   letter-spacing: 3px;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   margin-bottom: 20px;
 }
 
@@ -1859,7 +1859,7 @@ body {
   background: rgba(201, 168, 76, 0.12);
   border: 1px solid rgba(201, 168, 76, 0.25);
   color: var(--gold);
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 1.5px;
   margin-bottom: 20px;
@@ -2019,7 +2019,7 @@ body {
 
 #calculator .sec-label {
   color: #1456c8;
-  font-size: 0.85rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -2476,7 +2476,7 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 999px;
   background: rgba(201, 167, 62, 0.12);
   color: #c9a73e;
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;

@@ -522,7 +522,9 @@
           />
           <div class="logo-text">
             <span class="brand">Moneyrops</span>
-            <span class="brand">Capital Advisors Pvt. Ltd.</span>
+            <span style="font-size: 0.7rem" class="brand"
+              >Capital Advisors Pvt. Ltd.</span
+            >
             <span class="sub">We Cure Your Financial Problems</span>
           </div>
         </a>
@@ -532,7 +534,6 @@
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
-          <li><a href="blog.html">Blog</a></li>
         </ul>
 
         <!-- CTA -->
@@ -762,8 +763,8 @@
                 <span>Experience</span>
               </div>
               <div class="stat-box">
-                <h4>95%+</h4>
-                <span>Approval Ratio</span>
+                <h4>100%</h4>
+                <span>Lender partners</span>
               </div>
             </div>
 
@@ -827,7 +828,7 @@
     <section class="vision-section" id="about">
       <div class="vision-label">
         <span class="vision-icon">⬢</span>
-        <span style="font-size: 20px">About Moneyrops</span>
+        <span style="font-size: 1.5rem">About Moneyrops</span>
       </div>
       <div class="vision-content">
         <h2 class="vision-text">
@@ -915,21 +916,6 @@
         </div>
         <div class="finance-services-grid">
           <div class="finance-service-card">
-            <div class="finance-service-icon">📈</div>
-            <div class="finance-service-title">Investment Advisory</div>
-            <div class="finance-service-desc">
-              Informed investment recommendations aligned with your financial
-              goals and risk appetite.
-            </div>
-            <div
-              class="finance-service-link"
-              onclick="openApplyModal('investment-advisory')"
-            >
-              Apply Now
-            </div>
-          </div>
-
-          <div class="finance-service-card">
             <div class="finance-service-icon">🏗️</div>
             <div class="finance-service-title">Project Finance</div>
             <div class="finance-service-desc">
@@ -946,10 +932,11 @@
 
           <div class="finance-service-card">
             <div class="finance-service-icon">🔄</div>
-            <div class="finance-service-title">Cash Credit (CC)</div>
+            <div class="finance-service-title">Working Capital Solutions</div>
             <div class="finance-service-desc">
-              Flexible cash credit lines to manage short-term liquidity and
-              day-to-day business operations.
+              Cash credit and overdraft facilities designed to keep your
+              day-to-day operations running smoothly, even during seasonal cash
+              flow gaps.
             </div>
             <div
               class="finance-service-link"
@@ -972,15 +959,32 @@
           </div>
 
           <div class="finance-service-card">
-            <div class="finance-service-icon">💳</div>
-            <div class="finance-service-title">Overdraft (OD)</div>
+            <div class="finance-service-icon">📈</div>
+            <div class="finance-service-title">Investment Advisory</div>
             <div class="finance-service-desc">
-              Overdraft facilities ensuring business continuity during cash flow
-              gaps and lean periods.
+              Informed investment recommendations aligned with your financial
+              goals and risk appetite.
             </div>
             <div
               class="finance-service-link"
-              onclick="openApplyModal('overdraft')"
+              onclick="openApplyModal('investment-advisory')"
+            >
+              Apply Now
+            </div>
+          </div>
+
+          <div class="finance-service-card">
+            <div class="finance-service-icon">🏛️</div>
+            <div class="finance-service-title">
+              Government Subsidy Assistance
+            </div>
+            <div class="finance-service-desc">
+              Expert guidance to help your business identify and claim the right
+              government subsidies and MSME schemes it qualifies for.
+            </div>
+            <div
+              class="finance-service-link"
+              onclick="openApplyModal('government-subsidy')"
             >
               Apply Now
             </div>
@@ -1026,6 +1030,21 @@
             <div
               class="finance-service-link"
               onclick="openApplyModal('personal-loan')"
+            >
+              Apply Now
+            </div>
+          </div>
+
+          <div class="finance-service-card">
+            <div class="finance-service-icon">🧮</div>
+            <div class="finance-service-title">Virtual CFO Services</div>
+            <div class="finance-service-desc">
+              On-demand CFO expertise covering financial planning, MIS
+              reporting, cash flow management, and fundraising support.
+            </div>
+            <div
+              class="finance-service-link"
+              onclick="openApplyModal('virtual-cfo')"
             >
               Apply Now
             </div>
@@ -1382,7 +1401,7 @@
     </section>
 
     <!-- testimonial -->
-    <section class="mr-testimonial-section" id="testimonials">
+    <!-- <section class="mr-testimonial-section" id="testimonials">
       <div class="mr-testimonial-header">
         <span class="mr-testimonial-tag">CLIENT SUCCESS</span>
         <h2>Trusted by Businesses & Individuals</h2>
@@ -1436,7 +1455,7 @@
           <p class="mr-placeholder-text">Client testimonial coming soon</p>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- FAQ -->
     <section class="mr-faq-section" id="faq">
@@ -1599,8 +1618,8 @@
 
           <p class="bp-copy">
             From nationalised banks to housing finance companies and new-age
-            NBFCs every lender we work with is vetted, rate-compared, and
-            ready to move on your file.
+            NBFCs every lender we work with is vetted, rate-compared, and ready
+            to move on your file.
           </p>
         </div>
 
@@ -1636,7 +1655,9 @@
             </div>
             <div class="bp-card" data-tag="UNION">
               <img
-                src="./assets/image/patner/union-bank-of-india.webp" width="80" height="30"
+                src="./assets/image/patner/union-bank-of-india.webp"
+                width="80"
+                height="30"
                 alt="Union Bank of India logo"
               />
             </div>
@@ -1750,13 +1771,17 @@
             </div>
             <div class="bp-card" data-tag="LT_FINANCE">
               <img
-                src="./assets/image/patner/larsen-toubro.webp" width="80" height="30"
+                src="./assets/image/patner/larsen-toubro.webp"
+                width="80"
+                height="30"
                 alt="L&amp;T Financial Services logo"
               />
             </div>
             <div class="bp-card" data-tag="BHANIX">
               <img
-               src="./assets/image/patner/CASHe.webp" width="80" height="30"
+                src="./assets/image/patner/CASHe.webp"
+                width="80"
+                height="30"
                 alt="Bhanix Finance and Investment logo"
               />
             </div>
@@ -1771,37 +1796,49 @@
             </div>
             <div class="bp-card" data-tag="PRIVO">
               <img
-                src="./assets/image/patner/Privo.webp"width="80" height="30"
+                src="./assets/image/patner/Privo.webp"
+                width="80"
+                height="30"
                 alt="Privo Capital logo"
               />
             </div>
             <div class="bp-card" data-tag="CANARA">
               <img
-                src="./assets/image/patner/Canara_bank.webp" width="80" height="30"
+                src="./assets/image/patner/Canara_bank.webp"
+                width="80"
+                height="30"
                 alt="Canara Bank logo"
               />
             </div>
             <div class="bp-card" data-tag="PUNJAB_SIND">
               <img
-                src="./assets/image/patner/Punjab_Sind_Bank.webp"width="80" height="30"
+                src="./assets/image/patner/Punjab_Sind_Bank.webp"
+                width="80"
+                height="30"
                 alt="Punjab &amp; Sind Bank logo"
               />
             </div>
             <div class="bp-card" data-tag="BOM">
               <img
-                src="./assets/image/patner/Bank-of-maharashtra.webp" width="80" height="30"
+                src="./assets/image/patner/Bank-of-maharashtra.webp"
+                width="80"
+                height="30"
                 alt="Bank of Maharashtra logo"
               />
             </div>
             <div class="bp-card" data-tag="PNB">
               <img
-                src="./assets/image/patner/Punjab_national_bank.webp" width="80" height="30"
+                src="./assets/image/patner/Punjab_national_bank.webp"
+                width="80"
+                height="30"
                 alt="Punjab National Bank logo"
               />
             </div>
             <div class="bp-card" data-tag="INDIAN_BANK">
               <img
-                src="./assets/image/patner/indian_bank.webp" width="80" height="30"
+                src="./assets/image/patner/indian_bank.webp"
+                width="80"
+                height="30"
                 alt="Indian Bank logo"
               />
             </div>
@@ -1880,6 +1917,18 @@
             <div class="contact-form-bg"></div>
 
             <div class="contact-form-inner">
+              <input
+                type="hidden"
+                name="subject"
+                value="New Contact Form Enquiry | Moneyrops Homepage"
+              />
+              <input type="hidden" name="from_name" value="Moneyrops Website" />
+              <input
+                type="hidden"
+                name="service"
+                value="Homepage Contact Form"
+              />
+
               <div class="contact-grid">
                 <input type="text" name="name" placeholder="Name" required />
                 <input
@@ -1905,14 +1954,14 @@
                 />
                 <input
                   type="text"
-                  name="nature_of_business"
+                  name="business_type"
                   placeholder="Nature of Business"
                   required
                 />
 
                 <input
                   type="text"
-                  name="business_turnover"
+                  name="turnover"
                   placeholder="Business Turnover"
                   required
                 />
@@ -1991,7 +2040,7 @@
           <h4>Connect</h4>
 
           <div class="social-icons">
-            <a href="#"><i class="ri-linkedin-fill"></i></a>
+            <a href="https://www.linkedin.com/company/moneyrops-capital-advisors-pvt-ltd/"><i class="ri-linkedin-fill"></i></a>
             <a href="#"><i class="ri-instagram-line"></i></a>
             <a href="#"><i class="ri-facebook-fill"></i></a>
           </div>
@@ -2037,5 +2086,6 @@
     </script>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/form.js"></script>
+    <script src="./assets/js/homepage-contact.js"></script>
   </body>
 </html>

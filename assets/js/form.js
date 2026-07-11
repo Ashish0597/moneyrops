@@ -1,4 +1,3 @@
-// ── SERVICE CONFIG: fields per service ──────────────
 const serviceConfig = {
   "investment-advisory": {
     title: "Investment Advisory",
@@ -23,7 +22,7 @@ const serviceConfig = {
   },
 
   "cash-credit": {
-    title: "Cash Credit (CC)",
+    title: "Working Capital Solutions",
     fields: [
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
@@ -36,6 +35,18 @@ const serviceConfig = {
 
   "lap": {
     title: "Loan Against Property (LAP)",
+    fields: [
+      { label: "Name", name: "name", type: "text" },
+      { label: "Contact", name: "contact", type: "tel" },
+      { label: "City", name: "city", type: "text" },
+      { label: "Business Name", name: "business_name", type: "text" },
+      { label: "Industry Type", name: "industry_type", type: "text" },
+      { label: "Required Amount", name: "required_amount", type: "text" }
+    ]
+  },
+
+  "government-subsidy-assistance": {
+    title: "Government Subsidy",
     fields: [
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
@@ -106,18 +117,21 @@ const serviceConfig = {
     ]
   },
 
-  "overdraft": {
-    title: "Overdraft (OD)",
+  "virtual-cfo": {
+    title: "Virtual CFO Services",
     fields: [
       { label: "Name", name: "name", type: "text" },
       { label: "Contact", name: "contact", type: "tel" },
       { label: "City", name: "city", type: "text" },
       { label: "Business Name", name: "business_name", type: "text" },
       { label: "Industry Type", name: "industry_type", type: "text" },
-      { label: "Required Amount", name: "required_amount", type: "text" }
+      { label: "Annual Turnover", name: "annual_turnover", type: "text" }
     ]
   }
 };
+
+// ── FORMSPREE ENDPOINT (used for all service application forms) ──
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xgojgrwn";
 
 // ── OPEN MODAL ───────────────────────────────────────
 function openApplyModal(serviceKey) {
@@ -171,49 +185,39 @@ function closeApplyModal(e) {
 }
 
 
-// ── FORM SUBMIT ──────────────────────────────────────
+// ── FORM SUBMIT (Apply Modal — now via Formspree) ────
 const applyForm = document.getElementById("applyForm");
 
 if (applyForm) {
-applyForm.addEventListener("submit", function (e) {
+applyForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const submitBtn = e.target.querySelector(".apply-submit-btn");
   const statusEl = document.getElementById("applyFormStatus");
 
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Sending...";
-
   const formData = new FormData(e.target);
-  const templateParams = {};
 
-  formData.forEach((value, key) => {
-    templateParams[key] = value;
-  }); 
-
-  if (
-    templateParams.contact &&
-    !/^\d{10}$/.test(templateParams.contact)
-  ) {
-    statusEl.textContent =
-      "Please enter a valid 10 digit mobile number.";
+  // Mobile number validation
+  const contact = formData.get("contact");
+  if (contact && !/^\d{10}$/.test(contact)) {
+    statusEl.textContent = "Please enter a valid 10 digit mobile number.";
     statusEl.className = "apply-form-status error";
-
-    submitBtn.disabled = false;
-    submitBtn.innerHTML =
-      'Submit Application <i class="ri-arrow-right-line"></i>';
-
     return;
   }
 
-  emailjs
-    .send(
-      "service_5y6tya9",
-      "template_n5sb98g",
-      templateParams,
-      "lJBPZEThLQpI2FlU9"
-    )
-    .then(() => {
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Sending...";
+
+  try {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (response.ok) {
       statusEl.textContent = "Application submitted successfully!";
       statusEl.className = "apply-form-status success";
       e.target.reset();
@@ -221,17 +225,22 @@ applyForm.addEventListener("submit", function (e) {
       setTimeout(() => {
         closeApplyModal();
       }, 2000);
-    })
-    .catch((error) => {
-      console.error(error);
-      statusEl.textContent = "Something went wrong. Please try again.";
+    } else {
+      const result = await response.json();
+      statusEl.textContent = result.errors
+        ? result.errors.map((err) => err.message).join(", ")
+        : "Something went wrong. Please try again.";
       statusEl.className = "apply-form-status error";
-    })
-    .finally(() => {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML =
-        'Submit Application <i class="ri-arrow-right-line"></i>';
-    });
+    }
+  } catch (error) {
+    console.error(error);
+    statusEl.textContent = "Something went wrong. Please try again.";
+    statusEl.className = "apply-form-status error";
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML =
+      'Submit Application <i class="ri-arrow-right-line"></i>';
+  }
 });}
 
 document.addEventListener("keydown", function (e) {
@@ -251,6 +260,7 @@ function closeReferralModal() {
   document.body.style.overflow = "";
 }
 
+// ── REFERRAL FORM — stays on EmailJS ──────────────────
 const referralForm = document.getElementById("referralForm");
 
 if (referralForm) {
@@ -291,81 +301,64 @@ if (referralForm) {
 };
 
 
-// ── SERVICE PAGE APPLICATION FORM ─────────────────────
+// ── SERVICE PAGE APPLICATION FORM (Project & Expansion Finance) — now via Formspree ──
 
 const serviceApplyForm = document.getElementById("serviceApplyForm");
 
 if (serviceApplyForm) {
-  serviceApplyForm.addEventListener("submit", function (e) {
+  serviceApplyForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const submitBtn = this.querySelector('button[type="submit"]');
     const statusEl = this.querySelector(".apply-form-status");
 
-    // Get all form data
     const formData = new FormData(this);
-    const templateParams = {};
 
-    formData.forEach((value, key) => {
-      templateParams[key] = value;
-    });
-
-    // Add service name
-    templateParams.service = "Project & Expansion Finance";
+    // Add service name (this form has no dedicated service input)
+    formData.append("service", "Project & Expansion Finance");
 
     // Mobile number validation
-    if (
-      templateParams.contact &&
-      !/^\d{10}$/.test(templateParams.contact)
-    ) {
-      statusEl.textContent =
-        "Please enter a valid 10 digit mobile number.";
-
+    const contact = formData.get("contact");
+    if (contact && !/^\d{10}$/.test(contact)) {
+      statusEl.textContent = "Please enter a valid 10 digit mobile number.";
       statusEl.className = "apply-form-status error";
-
       return;
     }
 
     // Button loading
     submitBtn.disabled = true;
-
     submitBtn.innerHTML =
       'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
 
-    // Send Email
-    emailjs
-      .send(
-        "service_5y6tya9",
-        "template_n5sb98g",
-        templateParams,
-        "lJBPZEThLQpI2FlU9"
-      )
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
-      .then(() => {
+      if (response.ok) {
         statusEl.textContent =
           "Application submitted successfully! Our team will contact you soon.";
-
-        statusEl.className =
-          "apply-form-status success";
-
+        statusEl.className = "apply-form-status success";
         this.reset();
-      })
-
-      .catch((error) => {
-        console.error("EmailJS Error:", error);
-
-        statusEl.textContent =
-          "Something went wrong. Please try again.";
-
-        statusEl.className =
-          "apply-form-status error";
-      })
-
-      .finally(() => {
-        submitBtn.disabled = false;
-
-        submitBtn.innerHTML =
-          'Submit Application <i class="fa-solid fa-arrow-right"></i>';
-      });
+      } else {
+        const result = await response.json();
+        statusEl.textContent = result.errors
+          ? result.errors.map((err) => err.message).join(", ")
+          : "Something went wrong. Please try again.";
+        statusEl.className = "apply-form-status error";
+      }
+    } catch (error) {
+      console.error("Formspree Error:", error);
+      statusEl.textContent = "Something went wrong. Please try again.";
+      statusEl.className = "apply-form-status error";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML =
+        'Submit Application <i class="fa-solid fa-arrow-right"></i>';
+    }
   });
 }

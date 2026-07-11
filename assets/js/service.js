@@ -212,3 +212,53 @@
 
  
 })();
+
+
+// 
+
+(function () {
+  const MAX_TILT_DEG = 10; 
+
+  const frames = document.querySelectorAll(".svc-media-frame");
+
+  
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (prefersReducedMotion || frames.length === 0) return;
+
+  frames.forEach((frame) => {
+    let rafId = null;
+
+    function handleMouseMove(e) {
+      const rect = frame.getBoundingClientRect();
+      const x = e.clientX - rect.left; 
+      const y = e.clientY - rect.top; 
+
+      const percentX = x / rect.width; // 0 → 1
+      const percentY = y / rect.height; // 0 → 1
+
+      // Map to rotation: center = 0deg, edges = ±MAX_TILT_DEG
+      const rotateY = (percentX - 0.5) * (MAX_TILT_DEG * 2);
+      const rotateX = (0.5 - percentY) * (MAX_TILT_DEG * 2);
+
+      if (rafId) cancelAnimationFrame(rafId);
+
+      rafId = requestAnimationFrame(() => {
+        frame.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        frame.style.setProperty("--tilt-glow-x", `${percentX * 100}%`);
+        frame.style.setProperty("--tilt-glow-y", `${percentY * 100}%`);
+      });
+    }
+
+    function resetTilt() {
+      if (rafId) cancelAnimationFrame(rafId);
+      frame.style.transform = "rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+    }
+
+    frame.addEventListener("mousemove", handleMouseMove);
+    frame.addEventListener("mouseleave", resetTilt);
+   
+  });
+})();
