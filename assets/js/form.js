@@ -45,7 +45,7 @@ const serviceConfig = {
     ]
   },
 
-  "government-subsidy-assistance": {
+  "government-subsidy": {
     title: "Government Subsidy",
     fields: [
       { label: "Name", name: "name", type: "text" },
