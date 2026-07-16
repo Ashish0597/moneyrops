@@ -1,5 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
 
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+ if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
 
   /*  Navbar fade left to right ── */
 
@@ -126,14 +133,16 @@ if (document.querySelector(".hero-heading")) {
 
   /* ── 4. Scroll — Navbar pill → full width solid ── */
 
-  window.addEventListener("scroll", function () {
+  function updateNavbarScroll() {
     const navbar = document.getElementById("navbar");
-    if (window.scrollY > 50) {
+    if (window.scrollY > 80) {
       navbar.classList.add("scrolled");
     } else {
       navbar.classList.remove("scrolled");
     }
-  }, { passive: true });
+  }
+  updateNavbarScroll();
+  window.addEventListener("scroll", updateNavbarScroll, { passive: true });
 
 
   /* ── 5. Hamburger toggle ── */
